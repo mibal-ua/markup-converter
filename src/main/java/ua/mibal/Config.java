@@ -16,19 +16,14 @@
 
 package ua.mibal;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import ua.mibal.application.Application;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-public class Launcher {
-
-    public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
-        Application application = context.getBean(Application.class);
-        application.start();
-    }
+@Configuration
+@ComponentScan("ua.mibal")
+public class Config {
 }
