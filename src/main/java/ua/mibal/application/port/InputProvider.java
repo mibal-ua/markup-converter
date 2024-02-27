@@ -16,11 +16,13 @@
 
 package ua.mibal.application.port;
 
+import ua.mibal.adapter.out.model.Arguments;
+
 /**
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
 public interface InputProvider {
 
-    String getInput(String[] args);
+    String getInput(Arguments args);
 }

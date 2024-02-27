@@ -17,7 +17,6 @@
 package ua.mibal.adapter.out;
 
 import org.springframework.stereotype.Component;
-import ua.mibal.adapter.out.component.ArgumentParser;
 import ua.mibal.adapter.out.model.Arguments;
 import ua.mibal.application.port.InputProvider;
 
@@ -35,16 +34,10 @@ import static java.util.stream.Collectors.joining;
 @Component
 public class FileInputProvider implements InputProvider {
     private static final String INPUT_PATH_ARG_KEY = "input-path";
-    private final ArgumentParser argumentParser;
-
-    public FileInputProvider(ArgumentParser argumentParser) {
-        this.argumentParser = argumentParser;
-    }
 
     @Override
-    public String getInput(String[] args) {
-        Arguments arguments = argumentParser.parse(args);
-        String path = arguments.get(INPUT_PATH_ARG_KEY);
+    public String getInput(Arguments args) {
+        String path = args.get(INPUT_PATH_ARG_KEY);
         return getAllLinesBy(path);
     }
 

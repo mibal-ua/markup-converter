@@ -19,7 +19,6 @@ package ua.mibal.adapter.out;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import ua.mibal.adapter.out.component.ArgumentParser;
 import ua.mibal.adapter.out.model.Arguments;
 import ua.mibal.test.annotation.UnitTest;
 
@@ -44,26 +43,19 @@ class FileInputProvider_UnitTest {
     private FileInputProvider provider;
 
     @Mock
-    private ArgumentParser argumentParser;
-
-    @Mock
     private Arguments arguments;
 
     @BeforeEach
     void setUp() {
-        provider = new FileInputProvider(argumentParser);
+        provider = new FileInputProvider();
     }
 
     @Test
     void getInput() {
-        String[] args = {};
-
-        when(argumentParser.parse(args))
-                .thenReturn(arguments);
         when(arguments.get(INPUT_PATH_ARG_KEY))
                 .thenReturn(TEST_FILE_PATH);
 
-        String actual = provider.getInput(args);
+        String actual = provider.getInput(arguments);
 
         assertEquals(TEST_FILE_CONTENT, actual);
     }
