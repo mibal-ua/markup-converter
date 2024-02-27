@@ -20,7 +20,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.mibal.test.annotation.UnitTest;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Mykhailo Balakhon
@@ -45,5 +47,24 @@ class Arguments_UnitTest {
         String actual = args.get(key);
 
         assertEquals(value, actual);
+    }
+
+    @Test
+    void getRequired() {
+        String key = "KEY";
+        String value = "VALUE";
+        args.put(key, value);
+
+        String actual = assertDoesNotThrow(
+                () -> args.getRequired(key)
+        );
+
+        assertEquals(value, actual);
+    }
+
+    @Test
+    void getRequired_should_throw_ArgumentRequiredException() {
+        assertThrows(ArgumentRequiredException.class,
+                () -> args.getRequired("Absent but required key"));
     }
 }

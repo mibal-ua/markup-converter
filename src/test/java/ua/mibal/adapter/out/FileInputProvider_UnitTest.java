@@ -23,7 +23,6 @@ import ua.mibal.adapter.out.model.Arguments;
 import ua.mibal.test.annotation.UnitTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 import static ua.mibal.test.util.ClasspathUtils.getPathToResourceInClasspath;
 
@@ -53,22 +52,11 @@ class FileInputProvider_UnitTest {
 
     @Test
     void getInput() {
-        when(arguments.containsKey(INPUT_PATH_KEY))
-                .thenReturn(true);
-        when(arguments.get(INPUT_PATH_KEY))
+        when(arguments.getRequired(INPUT_PATH_KEY))
                 .thenReturn(TEST_FILE_PATH);
 
         String actual = provider.getInput(arguments);
 
         assertEquals(TEST_FILE_CONTENT, actual);
-    }
-
-    @Test
-    void getInput_should_throw_FileInputProviderException_if_arg_is_absent() {
-        when(arguments.containsKey(INPUT_PATH_KEY))
-                .thenReturn(false);
-
-        assertThrows(FileInputProviderException.class,
-                () -> provider.getInput(arguments));
     }
 }

@@ -16,22 +16,20 @@
 
 package ua.mibal.adapter.out.model;
 
-import java.util.HashMap;
-
 /**
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-public class Arguments extends HashMap<String, String> {
+public class ArgumentRequiredException extends RuntimeException {
 
-    public String getRequired(String key) {
-        String val = get(key);
-        if (val == null) {
-            throw new ArgumentRequiredException(String.format(
-                    "Provide required value for '%s' key",
-                    key
-            ));
-        }
-        return val;
+    public ArgumentRequiredException() {
+    }
+
+    public ArgumentRequiredException(String message) {
+        super(message);
+    }
+
+    public ArgumentRequiredException(String message, Throwable cause) {
+        super(message, cause);
     }
 }
