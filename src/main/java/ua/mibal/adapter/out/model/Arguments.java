@@ -16,14 +16,11 @@
 
 package ua.mibal.adapter.out.model;
 
+import java.util.HashMap;
+
 /**
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-public class Arguments {
-
-    // TODO
-    public String get(String argumentKey) {
-        throw new UnsupportedOperationException("Not implemented");
-    }
+public class Arguments extends HashMap<String, String> {
 }
