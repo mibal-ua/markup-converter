@@ -17,28 +17,21 @@
 package ua.mibal.adapter.out;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.junit.jupiter.MockitoSettings;
 import ua.mibal.adapter.out.component.ArgumentParser;
 import ua.mibal.adapter.out.model.Arguments;
+import ua.mibal.test.annotation.UnitTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
-import static org.mockito.quality.Strictness.LENIENT;
 import static ua.mibal.test.util.ClasspathUtils.getPathToResourceInClasspath;
 
 /**
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-@ExtendWith(MockitoExtension.class)
-@MockitoSettings(strictness = LENIENT)
-@DisplayNameGeneration(ReplaceUnderscores.class)
+@UnitTest
 class FileInputProvider_UnitTest {
     private static final String TEST_FILE_PATH = getPathToResourceInClasspath("test.txt");
     private static final String TEST_FILE_CONTENT = """
