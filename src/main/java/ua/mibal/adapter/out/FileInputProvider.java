@@ -33,12 +33,22 @@ import static java.util.stream.Collectors.joining;
  */
 @Component
 public class FileInputProvider implements InputProvider {
-    private static final String INPUT_PATH_ARG_KEY = "input-path";
+    private static final String INPUT_PATH_KEY = "input-path";
 
     @Override
     public String getInput(Arguments args) {
-        String path = args.get(INPUT_PATH_ARG_KEY);
+        validateContainsKey(args, INPUT_PATH_KEY);
+        String path = args.get(INPUT_PATH_KEY);
         return getAllLinesBy(path);
+    }
+
+    private void validateContainsKey(Arguments args, String key) {
+        if (!args.containsKey(key)) {
+            throw new FileInputProviderException(String.format(
+                    "Provide required value for '%s' key",
+                    INPUT_PATH_KEY
+            ));
+        }
     }
 
     private String getAllLinesBy(String path) {
