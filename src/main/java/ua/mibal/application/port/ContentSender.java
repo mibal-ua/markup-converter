@@ -14,21 +14,13 @@
  * under the License.
  */
 
-package ua.mibal;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import ua.mibal.application.Application;
+package ua.mibal.application.port;
 
 /**
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-public class Launcher {
+public interface ContentSender {
 
-    public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
-        Application application = context.getBean(Application.class);
-        application.start(args);
-    }
+    void send(String content, String[] args);
 }

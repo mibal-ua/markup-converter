@@ -16,18 +16,32 @@
 
 package ua.mibal.application;
 
+import org.springframework.stereotype.Component;
+import ua.mibal.application.port.ContentSender;
+import ua.mibal.application.port.Converter;
+import ua.mibal.application.port.InputProvider;
+
 /**
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-
-import org.springframework.stereotype.Component;
-
 @Component
 public class Application {
+    private final InputProvider inputProvider;
+    private final Converter converter;
+    private final ContentSender contentSender;
 
-    // TODO
-    public void start() {
-        throw new UnsupportedOperationException("Not implemented");
+    public Application(InputProvider inputProvider,
+                       Converter converter,
+                       ContentSender contentSender) {
+        this.inputProvider = inputProvider;
+        this.converter = converter;
+        this.contentSender = contentSender;
+    }
+
+    public void start(String[] args) {
+        String input = inputProvider.getInput(args);
+        String output = converter.convert(input);
+        contentSender.send(output, args);
     }
 }
