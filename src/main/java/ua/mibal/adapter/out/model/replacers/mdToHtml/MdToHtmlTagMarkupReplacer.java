@@ -1,4 +1,6 @@
-package ua.mibal.adapter.out.model.replacers;
+package ua.mibal.adapter.out.model.replacers.mdToHtml;
+
+import ua.mibal.adapter.out.model.replacers.RegexpMarkupReplacer;
 
 import static java.text.MessageFormat.format;
 

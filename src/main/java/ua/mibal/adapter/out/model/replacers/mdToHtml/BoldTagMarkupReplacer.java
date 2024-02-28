@@ -1,7 +1,6 @@
 package ua.mibal.adapter.out.model.replacers.mdToHtml;
 
 import org.springframework.stereotype.Component;
-import ua.mibal.adapter.out.model.replacers.MdToHtmlTagMarkupReplacer;
 
 /**
  * @author Mykhailo Balakhon
