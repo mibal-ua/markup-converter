@@ -23,8 +23,11 @@ class PreformattedTagMarkupReplacer_UnitTest {
 
     @ParameterizedTest
     @CsvSource({
-            "'```\n preformatted \n```',    '<pre>\n preformatted \n</pre>'",
-            "'```\n```',                    '<pre>\n</pre>'",
+            "'```\n preformatted \n```',            '<pre>\n preformatted \n</pre>'",
+            "'```\n```',                            '<pre>\n</pre>'",
+            "'```\npreformatted\nsecond line\n```', '<pre>\npreformatted\nsecond line\n</pre>'",
+            "'\n```\n preformatted \n```',          '\n<pre>\n preformatted \n</pre>'",
+            "'```\n preformatted \n```\n',          '<pre>\n preformatted \n</pre>\n'",
     })
     void replace(String source, String expected) {
         String actual = replacer.replace(source);

@@ -14,11 +14,9 @@ public class PreformattedTagMarkupReplacer extends RegexpMarkupReplacer implemen
     public PreformattedTagMarkupReplacer() {
         super(
                 "^```\\n" +
-                "((.*\\n)?)" +
-                "```",
-                "<pre>\n" +
-                "$1" +
-                "</pre>"
+                "(((.|\\n)*\\n)?)" +
+                "```(?=($|\\n))",
+                "<pre>\n$1</pre>"
         );
     }
 }
