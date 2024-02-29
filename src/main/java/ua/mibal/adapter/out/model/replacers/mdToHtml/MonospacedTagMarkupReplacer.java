@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
 @Component
-public class MonospacedTagMarkupReplacer extends MdToHtmlTagMarkupReplacer {
+public class MonospacedTagMarkupReplacer extends SimpleTagMarkupReplacer {
 
     public MonospacedTagMarkupReplacer() {
         super("`", "tt");
