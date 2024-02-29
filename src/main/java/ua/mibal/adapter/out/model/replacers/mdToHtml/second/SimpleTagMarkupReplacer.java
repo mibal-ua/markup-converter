@@ -1,6 +1,6 @@
 package ua.mibal.adapter.out.model.replacers.mdToHtml.second;
 
-import ua.mibal.adapter.out.model.replacers.RegexpMarkupReplacer;
+import ua.mibal.adapter.out.model.replacers.mdToHtml.RegexpMarkupReplacer;
 import ua.mibal.adapter.out.model.replacers.mdToHtml.SecondOrderMarkupReplacer;
 
 import static java.text.MessageFormat.format;

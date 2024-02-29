@@ -1,8 +1,8 @@
 package ua.mibal.adapter.out.model.replacers.mdToHtml.first;
 
 import org.springframework.stereotype.Component;
-import ua.mibal.adapter.out.model.replacers.RegexpMarkupReplacer;
 import ua.mibal.adapter.out.model.replacers.mdToHtml.FirstOrderMarkupReplacer;
+import ua.mibal.adapter.out.model.replacers.mdToHtml.RegexpMarkupReplacer;
 
 /**
  * @author Mykhailo Balakhon
