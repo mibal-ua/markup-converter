@@ -16,8 +16,6 @@
 
 package ua.mibal.adapter.out;
 
-import org.springframework.stereotype.Component;
-import ua.mibal.adapter.out.model.Arguments;
 import ua.mibal.application.port.InputProvider;
 
 import java.io.IOException;
@@ -31,23 +29,21 @@ import static java.util.stream.Collectors.joining;
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-@Component
 public class FileInputProvider implements InputProvider {
-    private static final String INPUT_PATH_KEY = "input-path";
+    private final String filePath;
 
-    @Override
-    public String getInput(Arguments args) {
-        String path = args.getRequired(INPUT_PATH_KEY);
-        return getAllLinesBy(path);
+    public FileInputProvider(String filePath) {
+        this.filePath = filePath;
     }
 
-    private String getAllLinesBy(String path) {
-        try (Stream<String> lines = lines(of(path))) {
+    @Override
+    public String getInput() {
+        try (Stream<String> lines = lines(of(filePath))) {
             return lines.collect(joining("\n"));
         } catch (IOException e) {
             throw new FileInputProviderException(
                     "Exception while reading all lines from file " +
-                    path, e
+                    filePath, e
             );
         }
     }

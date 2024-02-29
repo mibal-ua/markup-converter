@@ -16,9 +16,7 @@
 
 package ua.mibal.adapter.out;
 
-import org.springframework.stereotype.Component;
 import ua.mibal.adapter.out.component.FileWriterFactory;
-import ua.mibal.adapter.out.model.Arguments;
 import ua.mibal.application.port.ContentSender;
 
 import java.io.IOException;
@@ -28,22 +26,18 @@ import java.io.Writer;
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-@Component
 public class FileWriterContentSender implements ContentSender {
-    private static final String OUTPUT_PATH_KEY = "output-path";
     private final FileWriterFactory fileWriterFactory;
+    private final String filePath;
 
-    public FileWriterContentSender(FileWriterFactory fileWriterFactory) {
+    public FileWriterContentSender(FileWriterFactory fileWriterFactory,
+                                   String filePath) {
         this.fileWriterFactory = fileWriterFactory;
+        this.filePath = filePath;
     }
 
     @Override
-    public void send(String content, Arguments args) {
-        String filePath = args.getRequired(OUTPUT_PATH_KEY);
-        writeInto(filePath, content);
-    }
-
-    private void writeInto(String filePath, String content) {
+    public void send(String content) {
         try (Writer writer = fileWriterFactory.getFor(filePath)) {
             writer.write(content);
         } catch (IOException e) {
