@@ -24,8 +24,10 @@ class ItalicTagMarkupReplacer_UnitTest {
     @ParameterizedTest
     @CsvSource({
             "_text inside_,         <i>text inside</i>",
-            "'\n_text inside_\n',   '\n<i>text inside</i>\n'",
+            "_text_inside_,         <i>text_inside</i>",
+            "_text _inside_,        <i>text _inside</i>",
             "text _inside_,         text <i>inside</i>",
+            "'\n_text inside_\n',   '\n<i>text inside</i>\n'",
     })
     void replace(String source, String expected) {
         String actual = replacer.replace(source);
