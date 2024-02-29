@@ -12,7 +12,7 @@ public abstract class MdToHtmlTagMarkupReplacer extends RegexpMarkupReplacer {
 
     protected MdToHtmlTagMarkupReplacer(String mdTag, String htmlTag) {
         super(
-                format("{0}(.*?){0}", mdTag),
+                format("{0}\\b(.+)\\b{0}", mdTag),
                 format("<{0}>$1</{0}>", htmlTag)
         );
     }
