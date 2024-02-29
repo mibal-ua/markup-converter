@@ -25,6 +25,7 @@ class ParagraphMarkupReplacer_UnitTest {
     @ParameterizedTest
     @CsvSource({
             "line,                              <p>line</p>",
+            "**line**,                          <p>**line**</p>",
             "'',                                ''",
             "'Two lines\nparagraph',            '<p>Two lines\nparagraph</p>'",
             "'Paragraph\n1\n\nParagraph\n2',    '<p>Paragraph\n1\n</p>\n<p>Paragraph\n2</p>'",
