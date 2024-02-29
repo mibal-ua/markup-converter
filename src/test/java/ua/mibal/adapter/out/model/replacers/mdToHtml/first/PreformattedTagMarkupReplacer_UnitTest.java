@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out.model.replacers.mdToHtml;
+package ua.mibal.adapter.out.model.replacers.mdToHtml.first;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;

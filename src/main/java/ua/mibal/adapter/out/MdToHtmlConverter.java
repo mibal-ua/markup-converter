@@ -2,9 +2,13 @@ package ua.mibal.adapter.out;
 
 import org.springframework.stereotype.Component;
 import ua.mibal.adapter.out.model.replacers.MarkupReplacer;
+import ua.mibal.adapter.out.model.replacers.mdToHtml.FirstOrderMarkupReplacer;
+import ua.mibal.adapter.out.model.replacers.mdToHtml.SecondOrderMarkupReplacer;
 import ua.mibal.application.port.Converter;
 
 import java.util.List;
+
+import static ua.mibal.adapter.out.util.CollectionUtils.union;
 
 /**
  * @author Mykhailo Balakhon
@@ -14,8 +18,9 @@ import java.util.List;
 public class MdToHtmlConverter implements Converter {
     private final List<MarkupReplacer> markupReplacers;
 
-    public MdToHtmlConverter(List<MarkupReplacer> markupReplacers) {
-        this.markupReplacers = markupReplacers;
+    public MdToHtmlConverter(List<FirstOrderMarkupReplacer> firstOrderMarkupReplacers,
+                             List<SecondOrderMarkupReplacer> secondOrderMarkupReplacers) {
+        this.markupReplacers = union(firstOrderMarkupReplacers, secondOrderMarkupReplacers);
     }
 
     @Override

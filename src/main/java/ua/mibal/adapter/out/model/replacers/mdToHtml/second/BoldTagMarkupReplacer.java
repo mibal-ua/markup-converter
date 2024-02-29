@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out.model.replacers.mdToHtml;
+package ua.mibal.adapter.out.model.replacers.mdToHtml.second;
 
 import org.springframework.stereotype.Component;
 

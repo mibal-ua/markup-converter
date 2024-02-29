@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out.model.replacers.mdToHtml;
+package ua.mibal.adapter.out.model.replacers.mdToHtml.second;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,23 +12,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
 @UnitTest
-class ParagraphMarkupReplacer_UnitTest {
+class MonospacedTagMarkupReplacer_UnitTest {
 
-    private ParagraphMarkupReplacer replacer;
-
+    private MonospacedTagMarkupReplacer replacer;
 
     @BeforeEach
     void setUp() {
-        replacer = new ParagraphMarkupReplacer();
+        replacer = new MonospacedTagMarkupReplacer();
     }
 
     @ParameterizedTest
     @CsvSource({
-            "line,                              <p>line</p>",
-            "**line**,                          <p>**line**</p>",
-            "'',                                ''",
-            "'Two lines\nparagraph',            '<p>Two lines\nparagraph</p>'",
-            "'Paragraph\n1\n\nParagraph\n2',    '<p>Paragraph\n1\n</p>\n<p>Paragraph\n2</p>'",
+            "`monospaced`,                  <tt>monospaced</tt>",
+            "simple `monospaced text`,      simple <tt>monospaced text</tt>",
+            "simple `monospaced ` text`,    simple <tt>monospaced ` text</tt>",
     })
     void replace(String source, String expected) {
         String actual = replacer.replace(source);
