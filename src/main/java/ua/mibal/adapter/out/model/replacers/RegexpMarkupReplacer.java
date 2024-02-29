@@ -1,5 +1,9 @@
 package ua.mibal.adapter.out.model.replacers;
 
+import java.util.regex.Pattern;
+
+import static java.util.regex.Pattern.MULTILINE;
+
 /**
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
@@ -15,6 +19,8 @@ public abstract class RegexpMarkupReplacer implements MarkupReplacer {
 
     @Override
     public final String replace(String input) {
-        return input.replaceAll(FIND_REGEXP, REPLACE_REGEXP);
+        return Pattern.compile(FIND_REGEXP, MULTILINE)
+                .matcher(input)
+                .replaceAll(REPLACE_REGEXP);
     }
 }
