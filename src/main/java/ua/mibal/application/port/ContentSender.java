@@ -16,13 +16,11 @@
 
 package ua.mibal.application.port;
 
-import ua.mibal.adapter.out.model.Arguments;
-
 /**
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
 public interface ContentSender {
 
-    void send(String content, Arguments args);
+    void send(String content);
 }

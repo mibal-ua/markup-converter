@@ -16,11 +16,8 @@
 
 package ua.mibal;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import ua.mibal.adapter.out.component.ArgumentParser;
-import ua.mibal.adapter.out.model.Arguments;
 import ua.mibal.application.Application;
+import ua.mibal.application.component.ApplicationFactory;
 
 /**
  * @author Mykhailo Balakhon
@@ -29,12 +26,8 @@ import ua.mibal.application.Application;
 public class Launcher {
 
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
-
-        ArgumentParser argumentParser = context.getBean(ArgumentParser.class);
-        Arguments arguments = argumentParser.parse(args);
-
-        Application application = context.getBean(Application.class);
-        application.start(arguments);
+        ApplicationFactory applicationFactory = new ApplicationFactory(args);
+        Application application = applicationFactory.create();
+        application.start();
     }
 }

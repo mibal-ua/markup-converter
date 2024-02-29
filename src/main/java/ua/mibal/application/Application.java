@@ -17,7 +17,6 @@
 package ua.mibal.application;
 
 import org.springframework.stereotype.Component;
-import ua.mibal.adapter.out.model.Arguments;
 import ua.mibal.application.port.ContentSender;
 import ua.mibal.application.port.Converter;
 import ua.mibal.application.port.InputProvider;
@@ -40,9 +39,9 @@ public class Application {
         this.contentSender = contentSender;
     }
 
-    public void start(Arguments args) {
-        String input = inputProvider.getInput(args);
+    public void start() {
+        String input = inputProvider.getInput();
         String output = converter.convert(input);
-        contentSender.send(output, args);
+        contentSender.send(output);
     }
 }
