@@ -23,9 +23,11 @@ class BoldTagMarkupReplacer_UnitTest {
 
     @ParameterizedTest
     @CsvSource({
-            "**I love you**,                                <b>I love you</b>",
-            "'\n**I love you**',                            '\n<b>I love you</b>'",
-            "What do you prefer **Stubbing or mocking**?,   What do you prefer <b>Stubbing or mocking</b>?",
+            "**I love you**,                                    <b>I love you</b>",
+            "'\n**I love you**',                                '\n<b>I love you</b>'",
+            "What do you prefer **Stubbing or mocking**?,       What do you prefer <b>Stubbing or mocking</b>?",
+            "What do you prefer **Stubbing or ** mocking**?,    What do you prefer <b>Stubbing or ** mocking</b>?",
+            "'What do you prefer **Stubbing or \n mocking**?',  'What do you prefer **Stubbing or \n mocking**?'",
     })
     void replace(String source, String expected) {
         String actual = replacer.replace(source);
