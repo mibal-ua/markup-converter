@@ -19,19 +19,17 @@ package ua.mibal.adapter.out;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockedStatic;
-import ua.mibal.adapter.out.model.Arguments;
 import ua.mibal.test.annotation.UnitTest;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.when;
 
 /**
  * @author Mykhailo Balakhon
@@ -39,25 +37,15 @@ import static org.mockito.Mockito.when;
  */
 @UnitTest
 class FileInputProvider_UnitTest {
-    private static final String TEST_FILE_PATH = "test.txt";
-    private static final String TEST_FILE_CONTENT = """
-            YOU ARE AMAZING, MAAANN!!!!!
-                        
-            GOOD DAY, BRO :)""";
-
-    private static final String INPUT_PATH_KEY = "input-path";
 
     private FileInputProvider provider;
-
-    @Mock
-    private Arguments arguments;
 
     private MockedStatic<Files> files;
 
     @BeforeEach
     void setup() {
         files = mockStatic(Files.class);
-        provider = new FileInputProvider();
+        provider = new FileInputProvider("test.txt");
     }
 
     @AfterEach
@@ -67,25 +55,20 @@ class FileInputProvider_UnitTest {
 
     @Test
     void getInput() {
+        files.when(() -> Files.lines(Path.of("test.txt")))
+                .thenReturn(Stream.of("content", "of", "file"));
 
-        when(arguments.getRequired(INPUT_PATH_KEY))
-                .thenReturn(TEST_FILE_PATH);
-        files.when(() -> Files.lines(Path.of(TEST_FILE_PATH)))
-                .thenReturn(TEST_FILE_CONTENT.lines());
+        String actual = provider.getInput();
 
-        String actual = provider.getInput(arguments);
-
-        assertEquals(TEST_FILE_CONTENT, actual);
+        assertEquals("content\nof\nfile", actual);
     }
 
     @Test
     void getInput_should_throw_() {
-        when(arguments.getRequired(INPUT_PATH_KEY))
-                .thenReturn(TEST_FILE_PATH);
-        files.when(() -> Files.lines(Path.of(TEST_FILE_PATH)))
+        files.when(() -> Files.lines(Path.of("test.txt")))
                 .thenThrow(IOException.class);
 
         assertThrows(FileInputProviderException.class,
-                () -> provider.getInput(arguments));
+                () -> provider.getInput());
     }
 }

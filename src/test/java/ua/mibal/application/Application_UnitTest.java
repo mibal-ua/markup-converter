@@ -19,7 +19,6 @@ package ua.mibal.application;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import ua.mibal.adapter.out.model.Arguments;
 import ua.mibal.application.port.ContentSender;
 import ua.mibal.application.port.Converter;
 import ua.mibal.application.port.InputProvider;
@@ -45,9 +44,6 @@ class Application_UnitTest {
     @Mock
     private ContentSender contentSender;
 
-    @Mock
-    private Arguments arguments;
-
     @BeforeEach
     void setUp() {
         app = new Application(inputProvider, converter, contentSender);
@@ -55,17 +51,14 @@ class Application_UnitTest {
 
     @Test
     void start() {
-        String input = "SOURCE";
-        String output = "RESULT";
+        when(inputProvider.getInput())
+                .thenReturn("SOURCE");
+        when(converter.convert("SOURCE"))
+                .thenReturn("RESULT");
 
-        when(inputProvider.getInput(arguments))
-                .thenReturn(input);
-        when(converter.convert(input))
-                .thenReturn(output);
-
-        app.start(arguments);
+        app.start();
 
         verify(contentSender, times(1))
-                .send(output, arguments);
+                .send("RESULT");
     }
 }

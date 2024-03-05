@@ -30,7 +30,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 @UnitTest
 class ArgumentParser_UnitTest {
-    private static final String KEY_PREFIX = "--";
 
     private ArgumentParser parser;
 
@@ -41,13 +40,11 @@ class ArgumentParser_UnitTest {
 
     @Test
     void parse() {
-        String key = "key";
-        String val = "val";
-        String[] args = {KEY_PREFIX + key, val};
+        String[] args = {"-key", "val"};
 
         Arguments arguments = parser.parse(args);
 
-        assertEquals(val, arguments.get(key));
+        assertEquals("val", arguments.get("key"));
     }
 
     @Test

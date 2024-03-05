@@ -20,7 +20,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import ua.mibal.adapter.out.component.FileWriterFactory;
-import ua.mibal.adapter.out.model.Arguments;
 import ua.mibal.test.annotation.UnitTest;
 
 import java.io.FileWriter;
@@ -36,49 +35,35 @@ import static org.mockito.Mockito.when;
  */
 @UnitTest
 class FileWriterContentSender_UnitTest {
-    private static final String OUTPUT_PATH_KEY = "output-path";
-
     private FileWriterContentSender sender;
 
     @Mock
     private FileWriterFactory fileWriterFactory;
 
     @Mock
-    private Arguments args;
-    @Mock
     private FileWriter fileWriter;
 
     @BeforeEach
     void setUp() {
-        sender = new FileWriterContentSender(fileWriterFactory);
+        sender = new FileWriterContentSender(fileWriterFactory, "path/to/out/file");
     }
 
     @Test
     void send() throws IOException {
-        String outputPath = "path/to/out/file";
-        String content = "CONTENT TO WRITE";
-
-        when(args.getRequired(OUTPUT_PATH_KEY))
-                .thenReturn(outputPath);
-        when(fileWriterFactory.getFor(outputPath))
+        when(fileWriterFactory.getFor("path/to/out/file"))
                 .thenReturn(fileWriter);
 
-        sender.send(content, args);
+        sender.send("CONTENT TO WRITE");
 
-        verify(fileWriter).write(content);
+        verify(fileWriter).write("CONTENT TO WRITE");
     }
 
     @Test
     void send_should_throw_FileWriterContentSenderException() throws IOException {
-        String outputPath = "path/to/out/file";
-        String content = "CONTENT TO WRITE";
-
-        when(args.getRequired(OUTPUT_PATH_KEY))
-                .thenReturn(outputPath);
-        when(fileWriterFactory.getFor(outputPath))
+        when(fileWriterFactory.getFor("path/to/out/file"))
                 .thenThrow(IOException.class);
 
         assertThrows(FileWriterContentSenderException.class,
-                () -> sender.send(content, args));
+                () -> sender.send("CONTENT TO WRITE"));
     }
 }
