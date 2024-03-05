@@ -15,4 +15,9 @@ public class ItalicTagMarkupReplacer extends RegexpMarkupReplacer {
                 "<i>$1</i>"
         );
     }
+
+    @Override
+    protected void validate(String input) {
+        // TODO
+    }
 }

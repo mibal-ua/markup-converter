@@ -15,4 +15,9 @@ public class ParagraphMarkupReplacer extends RegexpMarkupReplacer {
                 "<p>$1</p>"
         );
     }
+
+    @Override
+    protected void validate(String input) {
+        // do nothing, paragraph have no markdown tags
+    }
 }

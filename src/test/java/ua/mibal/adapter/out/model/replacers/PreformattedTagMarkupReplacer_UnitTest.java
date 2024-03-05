@@ -3,9 +3,11 @@ package ua.mibal.adapter.out.model.replacers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import ua.mibal.adapter.out.model.MarkupValidationException;
 import ua.mibal.test.annotation.UnitTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Mykhailo Balakhon
@@ -33,5 +35,21 @@ class PreformattedTagMarkupReplacer_UnitTest {
         String actual = replacer.replace(source);
 
         assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "'```\n" +
+            "I love you'",
+
+            "'```\n" +
+            "I love you\n" +
+            "```\n" +
+            "```\n" +
+            "I love you'"
+    })
+    void validate(String input) {
+        assertThrows(MarkupValidationException.class,
+                () -> replacer.replace(input));
     }
 }

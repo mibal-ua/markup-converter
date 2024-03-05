@@ -17,4 +17,9 @@ public class PreformattedTagMarkupReplacer extends RegexpMarkupReplacer {
                 "<pre>\n$1</pre>"
         );
     }
+
+    @Override
+    protected void validate(String input) {
+        // TODO
+    }
 }
