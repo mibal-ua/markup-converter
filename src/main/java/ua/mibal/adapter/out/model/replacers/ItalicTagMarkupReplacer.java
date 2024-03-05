@@ -1,6 +1,10 @@
 package ua.mibal.adapter.out.model.replacers;
 
 import org.springframework.stereotype.Component;
+import ua.mibal.adapter.out.model.MarkupValidationException;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Mykhailo Balakhon
@@ -18,6 +22,20 @@ public class ItalicTagMarkupReplacer extends RegexpMarkupReplacer {
 
     @Override
     protected void validate(String input) {
-        // TODO
+        Pattern pattern = Pattern.compile("\\b_([^_])*$");
+        Matcher matcher = pattern.matcher(input);
+
+        if (matcher.find()) {
+            MarkupValidationException parentException = new MarkupValidationException(
+                    "Exception for markdown '_' tag"
+            );
+            do {
+                String quote = matcher.group();
+                parentException.addSuppressed(new MarkupValidationException(
+                        "Markdown tag is not closed for fragment '" + quote + "'"
+                ));
+            } while (matcher.find());
+            throw parentException;
+        }
     }
 }
