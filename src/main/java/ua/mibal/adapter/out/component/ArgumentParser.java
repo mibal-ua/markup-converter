@@ -25,7 +25,7 @@ import ua.mibal.adapter.out.model.Arguments;
  */
 @Component
 public class ArgumentParser {
-    private static final String KEY_PREFIX = "--";
+    private static final String KEY_PREFIX = "-";
 
     public Arguments parse(String[] args) {
         validate(args);
