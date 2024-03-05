@@ -1,6 +1,4 @@
-package ua.mibal.adapter.out.model.replacers.mdToHtml;
-
-import ua.mibal.adapter.out.model.replacers.MarkupReplacer;
+package ua.mibal.adapter.out.model.replacers;
 
 import java.util.regex.Pattern;
 

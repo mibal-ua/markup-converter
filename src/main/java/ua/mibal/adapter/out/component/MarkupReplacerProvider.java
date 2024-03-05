@@ -1,11 +1,11 @@
 package ua.mibal.adapter.out.component;
 
+import ua.mibal.adapter.out.model.replacers.BoldTagMarkupReplacer;
+import ua.mibal.adapter.out.model.replacers.ItalicTagMarkupReplacer;
 import ua.mibal.adapter.out.model.replacers.MarkupReplacer;
-import ua.mibal.adapter.out.model.replacers.mdToHtml.first.PreformattedTagMarkupReplacer;
-import ua.mibal.adapter.out.model.replacers.mdToHtml.second.BoldTagMarkupReplacer;
-import ua.mibal.adapter.out.model.replacers.mdToHtml.second.ItalicTagMarkupReplacer;
-import ua.mibal.adapter.out.model.replacers.mdToHtml.second.MonospacedTagMarkupReplacer;
-import ua.mibal.adapter.out.model.replacers.mdToHtml.second.ParagraphMarkupReplacer;
+import ua.mibal.adapter.out.model.replacers.MonospacedTagMarkupReplacer;
+import ua.mibal.adapter.out.model.replacers.ParagraphMarkupReplacer;
+import ua.mibal.adapter.out.model.replacers.PreformattedTagMarkupReplacer;
 
 /**
  * @author Mykhailo Balakhon
@@ -14,7 +14,7 @@ import ua.mibal.adapter.out.model.replacers.mdToHtml.second.ParagraphMarkupRepla
 public class MarkupReplacerProvider {
 
     public MarkupReplacer[] provide() {
-        return new MarkupReplacer[] {
+        return new MarkupReplacer[]{
                 new PreformattedTagMarkupReplacer(),
                 new ParagraphMarkupReplacer(),
 

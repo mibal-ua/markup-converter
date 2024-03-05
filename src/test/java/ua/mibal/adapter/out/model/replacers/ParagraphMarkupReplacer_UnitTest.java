@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out.model.replacers.mdToHtml.second;
+package ua.mibal.adapter.out.model.replacers;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,22 +12,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
 @UnitTest
-class ItalicTagMarkupReplacer_UnitTest {
+class ParagraphMarkupReplacer_UnitTest {
 
-    private ItalicTagMarkupReplacer replacer;
+    private ParagraphMarkupReplacer replacer;
+
 
     @BeforeEach
     void setUp() {
-        replacer = new ItalicTagMarkupReplacer();
+        replacer = new ParagraphMarkupReplacer();
     }
 
     @ParameterizedTest
     @CsvSource({
-            "_text inside_,         <i>text inside</i>",
-            "_text_inside_,         <i>text_inside</i>",
-            "_text _inside_,        <i>text _inside</i>",
-            "text _inside_,         text <i>inside</i>",
-            "'\n_text inside_\n',   '\n<i>text inside</i>\n'",
+            "line,                              <p>line</p>",
+            "**line**,                          <p>**line**</p>",
+            "'',                                ''",
+            "'Two lines\nparagraph',            '<p>Two lines\nparagraph</p>'",
+            "'Paragraph\n1\n\nParagraph\n2',    '<p>Paragraph\n1\n</p>\n<p>Paragraph\n2</p>'",
     })
     void replace(String source, String expected) {
         String actual = replacer.replace(source);
