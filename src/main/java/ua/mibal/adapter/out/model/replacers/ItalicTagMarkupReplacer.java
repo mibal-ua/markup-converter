@@ -6,6 +6,8 @@ import ua.mibal.adapter.out.model.MarkupValidationException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.util.regex.Pattern.MULTILINE;
+
 /**
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
@@ -22,7 +24,7 @@ public class ItalicTagMarkupReplacer extends RegexpMarkupReplacer {
 
     @Override
     protected void validate(String input) {
-        Pattern pattern = Pattern.compile("\\b_([^_])*$");
+        Pattern pattern = Pattern.compile("\\b_([^_])*$", MULTILINE);
         Matcher matcher = pattern.matcher(input);
 
         if (matcher.find()) {

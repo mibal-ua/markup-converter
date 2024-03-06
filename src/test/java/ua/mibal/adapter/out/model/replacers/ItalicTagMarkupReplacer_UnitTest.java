@@ -40,8 +40,16 @@ class ItalicTagMarkupReplacer_UnitTest {
     @ParameterizedTest
     @CsvSource({
             "_I love you",
+
             "_I love you_ _and her",
+
             "'_I love you\n'",
+
+            "'_I love you\n" +
+            "_and her_'",
+
+            "'_I love you_\n" +
+            "_a'",
     })
     void validate(String input) {
         assertThrows(MarkupValidationException.class,
