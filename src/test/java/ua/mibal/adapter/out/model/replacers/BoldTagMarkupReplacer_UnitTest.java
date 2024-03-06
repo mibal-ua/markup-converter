@@ -40,8 +40,13 @@ class BoldTagMarkupReplacer_UnitTest {
     @ParameterizedTest
     @CsvSource({
             "**I love you",
+
             "**I love** **you-and her",
+
             "'**I love you\n'",
+
+            "'**I love you\n" +
+            "**correct**'",
     })
     void validate(String input) {
         assertThrows(MarkupValidationException.class,

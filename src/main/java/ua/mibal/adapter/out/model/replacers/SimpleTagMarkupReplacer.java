@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.text.MessageFormat.format;
+import static java.util.regex.Pattern.MULTILINE;
 
 /**
  * @author Mykhailo Balakhon
@@ -24,7 +25,7 @@ public abstract class SimpleTagMarkupReplacer extends RegexpMarkupReplacer {
 
     @Override
     protected void validate(String input) {
-        Pattern pattern = Pattern.compile(format("{0}\\b([^{0}])*$", mdTag));
+        Pattern pattern = Pattern.compile(format("{0}\\b([^{0}])*$", mdTag), MULTILINE);
         Matcher matcher = pattern.matcher(input);
 
         if (matcher.find()) {
