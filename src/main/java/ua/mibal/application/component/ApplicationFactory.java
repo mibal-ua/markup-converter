@@ -49,7 +49,7 @@ public class ApplicationFactory {
 
     private ContentSender configureContentSender() {
         if (arguments.containsKey(OUTPUT_PATH_KEY)) {
-            String outputPath = arguments.get(INPUT_PATH_KEY);
+            String outputPath = arguments.get(OUTPUT_PATH_KEY);
             return new FileWriterContentSender(new FileWriterFactory(), outputPath);
         }
         return new ConsoleContentSender();
