@@ -49,7 +49,7 @@ class ItalicTagMarkupReplacer_UnitTest {
             "_and her_'",
 
             "'_I love you_\n" +
-            "_a'",
+            "_aff'",
     })
     void validate(String input) {
         assertThrows(MarkupValidationException.class,

@@ -1,0 +1,15 @@
+package ua.mibal.adapter.out.model.replacers.encoding;
+
+/**
+ * @author Mykhailo Balakhon
+ * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
+ */
+public class PreformattedInnerItalicTagMarkupEncoder extends RegexMarkupEncoder {
+
+    protected PreformattedInnerItalicTagMarkupEncoder() {
+        super(
+                "(^```\\n(.|\\n)+)\\b_(.+)_\\b(?=(.|\\n)+```($|\\n))",
+                "$1<_>$3</_>"
+        );
+    }
+}

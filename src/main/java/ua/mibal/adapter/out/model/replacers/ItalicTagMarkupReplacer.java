@@ -17,14 +17,14 @@ public class ItalicTagMarkupReplacer extends RegexpMarkupReplacer {
 
     public ItalicTagMarkupReplacer() {
         super(
-                "\\b_(.+)_\\b",
+                "(?<=^| )\\b_(.+)_\\b",
                 "<i>$1</i>"
         );
     }
 
     @Override
     protected void validate(String input) {
-        Pattern pattern = Pattern.compile("\\b_([^_])*$", MULTILINE);
+        Pattern pattern = Pattern.compile("_\\w.[^_]+\\b$", MULTILINE);
         Matcher matcher = pattern.matcher(input);
 
         if (matcher.find()) {

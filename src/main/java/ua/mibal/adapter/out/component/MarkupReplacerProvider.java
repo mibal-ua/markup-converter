@@ -6,6 +6,8 @@ import ua.mibal.adapter.out.model.replacers.MarkupReplacer;
 import ua.mibal.adapter.out.model.replacers.MonospacedTagMarkupReplacer;
 import ua.mibal.adapter.out.model.replacers.ParagraphMarkupReplacer;
 import ua.mibal.adapter.out.model.replacers.PreformattedTagMarkupReplacer;
+import ua.mibal.adapter.out.model.replacers.encoding.PreformattedInnerTagsDecoderMarkupReplacer;
+import ua.mibal.adapter.out.model.replacers.encoding.PreformattedInnerTagsEncoderMarkupReplacer;
 
 /**
  * @author Mykhailo Balakhon
@@ -15,12 +17,16 @@ public class MarkupReplacerProvider {
 
     public MarkupReplacer[] provide() {
         return new MarkupReplacer[]{
-                new PreformattedTagMarkupReplacer(),
-                new ParagraphMarkupReplacer(),
+                new PreformattedInnerTagsEncoderMarkupReplacer(),
 
                 new BoldTagMarkupReplacer(),
                 new ItalicTagMarkupReplacer(),
-                new MonospacedTagMarkupReplacer()
+                new MonospacedTagMarkupReplacer(),
+
+                new PreformattedInnerTagsDecoderMarkupReplacer(),
+                new PreformattedTagMarkupReplacer(),
+
+                new ParagraphMarkupReplacer(),
         };
     }
 }
