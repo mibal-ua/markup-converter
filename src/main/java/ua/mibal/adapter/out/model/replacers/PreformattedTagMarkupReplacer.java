@@ -1,6 +1,12 @@
 package ua.mibal.adapter.out.model.replacers;
 
 import org.springframework.stereotype.Component;
+import ua.mibal.adapter.out.model.MarkupValidationException;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static java.util.regex.Pattern.MULTILINE;
 
 /**
  * @author Mykhailo Balakhon
@@ -20,6 +26,18 @@ public class PreformattedTagMarkupReplacer extends RegexpMarkupReplacer {
 
     @Override
     protected void validate(String input) {
-        // TODO
+        Pattern pattern = Pattern.compile("^```$", MULTILINE);
+        Matcher matcher = pattern.matcher(input);
+
+        long foundCount = matcher.results().count();
+        if (isOdd(foundCount)) {
+            throw new MarkupValidationException(
+                    "Exception for markdown '```' tag: Markdown tag is not closed"
+            );
+        }
+    }
+
+    private boolean isOdd(long n) {
+        return n % 2 == 1;
     }
 }
