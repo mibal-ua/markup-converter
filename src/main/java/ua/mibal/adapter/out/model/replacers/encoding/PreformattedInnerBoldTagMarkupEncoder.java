@@ -9,8 +9,8 @@ public class PreformattedInnerBoldTagMarkupEncoder extends RegexMarkupEncoder {
     protected PreformattedInnerBoldTagMarkupEncoder() {
         super(
 
-                "(^```\\n(.|\\n)+)\\*\\*(.+)\\*\\*(?=(.|\\n)+```($|\\n))",
-                "$1<**>$3</**>"
+                "\\*\\*\\b(.+)\\b\\*\\*",
+                "<**>$1</**>"
         );
     }
 }

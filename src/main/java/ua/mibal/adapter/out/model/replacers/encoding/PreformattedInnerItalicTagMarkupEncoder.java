@@ -8,8 +8,8 @@ public class PreformattedInnerItalicTagMarkupEncoder extends RegexMarkupEncoder 
 
     protected PreformattedInnerItalicTagMarkupEncoder() {
         super(
-                "(^```\\n(.|\\n)+)\\b_(.+)_\\b(?=(.|\\n)+```($|\\n))",
-                "$1<_>$3</_>"
+                "\\b_\\B(.+)\\B_\\b",
+                "<_>$1</_>"
         );
     }
 }

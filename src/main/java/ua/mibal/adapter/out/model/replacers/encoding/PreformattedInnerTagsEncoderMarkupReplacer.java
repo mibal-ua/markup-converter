@@ -3,6 +3,11 @@ package ua.mibal.adapter.out.model.replacers.encoding;
 import ua.mibal.adapter.out.model.replacers.MarkupReplacer;
 
 import java.util.List;
+import java.util.regex.MatchResult;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static java.util.regex.Pattern.MULTILINE;
 
 /**
  * @author Mykhailo Balakhon
@@ -17,7 +22,28 @@ public class PreformattedInnerTagsEncoderMarkupReplacer implements MarkupReplace
 
     @Override
     public String replace(String input) {
+        Pattern pattern = Pattern.compile("^```\\n" +
+                                          "(((.|\\n)*\\n)?)" +
+                                          "```(?=($|\\n))", MULTILINE);
+        Matcher matcher = pattern.matcher(input);
+
         String result = input;
+        for (MatchResult match : matcher.results().toList()) {
+            result = replaceOccurrence(match, input);
+        }
+        return result;
+    }
+
+    private String replaceOccurrence(MatchResult match, String input) {
+        String before = input.substring(0, match.start());
+        String after = input.substring(match.end(), input.length());
+
+        String protectedContent = protect(match.group());
+        return before + protectedContent + after;
+    }
+
+    private String protect(String content) {
+        String result = content;
         for (MarkupEncoder encoder : innerTagEncoderMarkupEncoders) {
             result = encoder.encode(result);
         }

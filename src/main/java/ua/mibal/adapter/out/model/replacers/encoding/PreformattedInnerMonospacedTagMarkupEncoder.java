@@ -8,8 +8,8 @@ public class PreformattedInnerMonospacedTagMarkupEncoder extends RegexMarkupEnco
 
     protected PreformattedInnerMonospacedTagMarkupEncoder() {
         super(
-                "(^```\\n(.|\\n)+)`(.+)`(?=(.|\\n)+```($|\\n))",
-                "$1<`>$3</`>"
+                "`\\b(.+)\\b`",
+                "<`>$1</`>"
         );
     }
 }
