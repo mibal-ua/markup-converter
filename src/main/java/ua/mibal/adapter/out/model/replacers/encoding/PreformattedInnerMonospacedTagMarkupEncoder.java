@@ -8,7 +8,7 @@ public class PreformattedInnerMonospacedTagMarkupEncoder extends RegexMarkupEnco
 
     protected PreformattedInnerMonospacedTagMarkupEncoder() {
         super(
-                "`\\b(.+)\\b`",
+                "`\\b([^`]+)\\b`",
                 "<`>$1</`>"
         );
     }
