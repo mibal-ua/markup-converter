@@ -17,7 +17,7 @@ public abstract class SimpleTagMarkupReplacer extends RegexpMarkupReplacer {
 
     public SimpleTagMarkupReplacer(String mdTag, String htmlTag) {
         super(
-                format("{0}\\b(.+)\\b{0}", mdTag),
+                format("{0}\\b([^{0}]+)\\b{0}", mdTag),
                 format("<{0}>$1</{0}>", htmlTag)
         );
         this.mdTag = mdTag;
