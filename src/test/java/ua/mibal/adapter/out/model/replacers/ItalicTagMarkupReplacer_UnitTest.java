@@ -27,7 +27,7 @@ class ItalicTagMarkupReplacer_UnitTest {
     @CsvSource({
             "_text inside_,         <i>text inside</i>",
             "_text_inside_,         <i>text_inside</i>",
-            "_text _inside_,        <i>text _inside</i>",
+            "_text-inside tags_,    <i>text-inside tags</i>",
             "text _inside_,         text <i>inside</i>",
             "'\n_text inside_\n',   '\n<i>text inside</i>\n'",
     })
