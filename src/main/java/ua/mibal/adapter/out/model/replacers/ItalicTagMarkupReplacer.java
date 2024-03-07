@@ -1,6 +1,5 @@
 package ua.mibal.adapter.out.model.replacers;
 
-import org.springframework.stereotype.Component;
 import ua.mibal.adapter.out.model.MarkupValidationException;
 
 import java.util.Map;
@@ -13,7 +12,6 @@ import static java.util.regex.Pattern.MULTILINE;
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-@Component
 public class ItalicTagMarkupReplacer extends RegexpMarkupReplacer {
     private final MarkupReplacer italicSnakeCaseMarkupReplacer = new RegexpMarkupReplacer(
             "\\b_\\B([^ ><]+)\\B_\\b",

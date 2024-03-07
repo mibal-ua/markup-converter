@@ -16,7 +16,6 @@
 
 package ua.mibal.adapter.out.component;
 
-import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,7 +24,6 @@ import java.io.IOException;
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-@Component
 public class FileWriterFactory {
 
     public FileWriter getFor(String filePath) throws IOException {

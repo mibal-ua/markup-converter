@@ -16,14 +16,10 @@
 
 package ua.mibal;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-
 /**
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-@Configuration
-@ComponentScan("ua.mibal")
+@ConfigurationScan("ua.mibal")
 public class Config {
 }

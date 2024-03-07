@@ -16,7 +16,6 @@
 
 package ua.mibal.application;
 
-import org.springframework.stereotype.Component;
 import ua.mibal.application.port.ContentSender;
 import ua.mibal.application.port.Converter;
 import ua.mibal.application.port.InputProvider;
@@ -25,7 +24,6 @@ import ua.mibal.application.port.InputProvider;
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-@Component
 public class Application {
     private final InputProvider inputProvider;
     private final Converter converter;
