@@ -39,8 +39,8 @@ public class ItalicTagMarkupReplacer extends RegexpMarkupReplacer {
 
     @Override
     protected void validate(String input) {
-        Pattern notClosedAtTheEndPattern = Pattern.compile("_\\w.[^_]+\\b(?!(.*\\w_\\b))", MULTILINE);
-        Pattern notClosedAtTheMiddlePattern = Pattern.compile("_\\w.[^_]+\\b(?=(\\b_\\B([^_><]+)\\B_\\b))", MULTILINE);
+        Pattern notClosedAtTheEndPattern = Pattern.compile("\\b_\\B[^_]+\\b(?!.*\\B_\\b)", MULTILINE);
+        Pattern notClosedAtTheMiddlePattern = Pattern.compile("\\b_\\B[^_]+\\b(?=\\b_\\B[^_><]+\\B_\\b)", MULTILINE);
 
         checkForViolation(input, Map.of(
                 notClosedAtTheEndPattern, "Markdown tag is not closed",
