@@ -2,6 +2,7 @@ package ua.mibal.adapter.out.model.replacers;
 
 import ua.mibal.adapter.out.model.MarkupValidationException;
 
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,20 +26,34 @@ public abstract class SimpleTagMarkupReplacer extends RegexpMarkupReplacer {
 
     @Override
     protected void validate(String input) {
-        Pattern pattern = Pattern.compile(format("{0}\\b([^{0}])*$", mdTag), MULTILINE);
-        Matcher matcher = pattern.matcher(input);
+        Pattern nestedTagsPattern = Pattern.compile(format("{0}((\\b_|<i>\\b)|((((\\*\\*)|<b>)|(`|<tt>))\\b))([^{0}]+)(((_\\b|\\b<\\/i>))|(\\b((\\*\\*)|<\\/b>)|`|<\\/tt>)){0}", mdTag), MULTILINE);
+        Pattern notClosedPattern = Pattern.compile(format("{0}\\b([^{0}])*$", mdTag), MULTILINE);
 
-        if (matcher.find()) {
-            MarkupValidationException parentException = new MarkupValidationException(
-                    "Exception for markdown '%s' tag".formatted(mdTag)
-            );
-            do {
-                String quote = matcher.group();
-                parentException.addSuppressed(new MarkupValidationException(
-                        "Markdown tag is not closed for fragment '" + quote + "'"
-                ));
-            } while (matcher.find());
-            throw parentException;
+        checkForViolation(input, Map.of(
+                nestedTagsPattern, "Tags are nested",
+                notClosedPattern, "Markdown tag is not closed"
+        ));
+    }
+
+    private void checkForViolation(String input, Map<Pattern, String> patterns) {
+        for (Map.Entry<Pattern, String> entry : patterns.entrySet()) {
+            String message = entry.getValue();
+            Pattern pattern = entry.getKey();
+
+            Matcher matcher = pattern.matcher(input);
+
+            if (matcher.find()) {
+                MarkupValidationException parentException = new MarkupValidationException(
+                        "Exception for markdown '%s' tag".formatted(mdTag)
+                );
+                do {
+                    String quote = matcher.group();
+                    parentException.addSuppressed(new MarkupValidationException(
+                            message + " for fragment '" + quote + "'"
+                    ));
+                } while (matcher.find());
+                throw parentException;
+            }
         }
     }
 }

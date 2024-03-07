@@ -3,9 +3,11 @@ package ua.mibal.adapter.out;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ua.mibal.adapter.out.component.MarkupReplacerProvider;
+import ua.mibal.adapter.out.model.MarkupValidationException;
 import ua.mibal.test.annotation.UnitTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Mykhailo Balakhon
@@ -43,5 +45,25 @@ class MdToHtmlConverter_UnitTest {
                    Це означає, що він відобразиться, як є, і жодне інше форматування, як от **жирний** **жирний** чи _курсив_ _на_ _кур_сив2_ `нього` `не`
                 впливає.          А ще тут усі пробіли, відступи та перенесення рядка зберігаються як є
                 </pre></p>""", actual);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            // not closed tags
+            "**aaaaaa bbbbbb",
+            "_aaaaaaa bbbbbb",
+            "`aaaaaaa bbbbbb",
+
+            // nesting
+            "`**abcd**`",
+            "_**abcd**_",
+            "**_abcd_**",
+            "`_abcd_`",
+            "**`abcd`**",
+            "_`abcd`_",
+    })
+    void convert_should_throw(String input) {
+        assertThrows(MarkupValidationException.class,
+                () -> converter.convert(input));
     }
 }
