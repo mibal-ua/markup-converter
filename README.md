@@ -48,13 +48,13 @@ Here's a general guide to help you get started:
 3. **Build the Project (if needed):**
    You need maven build tool to build the project using:
    ```bash
-   mvn clean install
+   mvn clean package
    ```
 
 4. **Run the Application:**
    Find an executable JAR file and run it using:
    ```bash
-   java -jar <jar_file_name>.jar
+   java -jar target/<jar_file_name>.jar
    ```
 
 5. **Provide Configurations:**
