@@ -18,7 +18,7 @@ public abstract class RegexMarkupEncoder implements MarkupEncoder {
     }
 
     @Override
-    public final String encode(String input) {
+    public String encode(String input) {
         return Pattern.compile(FIND_REGEXP, MULTILINE)
                 .matcher(input)
                 .replaceAll(REPLACE_REGEXP);
