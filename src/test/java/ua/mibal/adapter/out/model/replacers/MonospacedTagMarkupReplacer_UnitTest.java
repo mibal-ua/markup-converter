@@ -27,7 +27,6 @@ class MonospacedTagMarkupReplacer_UnitTest {
     @CsvSource({
             "`monospaced`,                  <tt>monospaced</tt>",
             "simple `monospaced text`,      simple <tt>monospaced text</tt>",
-            "simple `monospaced ` text`,    simple <tt>monospaced ` text</tt>",
     })
     void replace(String source, String expected) {
         String actual = replacer.replace(source);

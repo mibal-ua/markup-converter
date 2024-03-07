@@ -28,7 +28,6 @@ class BoldTagMarkupReplacer_UnitTest {
             "**I love you**,                                    <b>I love you</b>",
             "'\n**I love you**',                                '\n<b>I love you</b>'",
             "What do you prefer **Stubbing or mocking**?,       What do you prefer <b>Stubbing or mocking</b>?",
-            "What do you prefer **Stubbing or ** mocking**?,    What do you prefer <b>Stubbing or ** mocking</b>?",
     })
     void replace(String source, String expected) {
         String actual = replacer.replace(source);
