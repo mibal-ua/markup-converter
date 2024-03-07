@@ -29,8 +29,7 @@ This Java application is a simple yet powerful tool designed to convert Markdown
 - **Language:** Java
 - **Compatibility:** Java Runtime Environment (JRE) 18 or higher
 
-
-## Run instuctions
+## Run instructions
 
 Here's a general guide to help you get started:
 
@@ -61,3 +60,15 @@ Here's a general guide to help you get started:
 5. **Provide Configurations:**
    You must provide `-in <path_to_input>` argument to specify input md file
    Also, if you want, you can specify `-out <path_to_out>` argument to save converted content into file. If you don't want that, applicaiton will out converted content to terminal.
+
+## Run example
+
+- To see the result in `out.html`
+   ```bash
+   java -jar target/markup-converter-1.0.jar -in /path/to/source.md -out /path/to/out.html
+   ```
+
+- To see the result in the terminal window
+   ```bash
+   java -jar target/markup-converter-1.0.jar -in /path/to/source.md
+   ```
