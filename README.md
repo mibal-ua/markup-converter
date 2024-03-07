@@ -1,4 +1,34 @@
-# The Markup converter app
+# Java Markdown to HTML Converter
+
+## Description
+
+This Java application is a simple yet powerful tool designed to convert Markdown files into HTML format. It provides an easy and efficient way to transform your Markdown documents into beautifully rendered HTML, making them suitable for web publishing or integration into HTML-based environments.
+
+**Key Features:**
+
+1. **Markdown to HTML Conversion:** The application seamlessly reads Markdown files, parsing their content and converting it into well-structured HTML.
+
+2. **Configurable Options:** The converter offers configurable options to tailor the HTML output according to your preferences.
+
+3. **Cross-Platform Compatibility:** Built using Java, this application is platform-independent, ensuring compatibility across various operating systems. Whether you are using Windows, macOS, or Linux, you can run the converter without any compatibility issues.
+
+4. **Lightweight and Efficient:** The application is designed to be lightweight and efficient, ensuring fast and reliable Markdown to HTML conversion without unnecessary resource consumption.
+
+**How to Use:**
+
+1. **Input Markdown File:** Specify the path to the Markdown file you want to convert.
+
+2. **Configure Options (Optional):** Customize HTML output file if needed.
+
+3. **Run Conversion:** Initiate the conversion process with a simple click, and the application will generate the corresponding HTML file.
+
+4. **View HTML Output:** Once the conversion is complete, open the generated HTML file in your preferred web browser to view the transformed content.
+
+**Technical Details:**
+
+- **Language:** Java
+- **Compatibility:** Java Runtime Environment (JRE) 18 or higher
+
 
 ## Run instuctions
 
