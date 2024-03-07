@@ -14,12 +14,26 @@ import static java.util.regex.Pattern.MULTILINE;
  */
 @Component
 public class ItalicTagMarkupReplacer extends RegexpMarkupReplacer {
+    private final MarkupReplacer italicSnakeCaseMarkupReplacer = new RegexpMarkupReplacer(
+            "\\b_\\B([^ ><]+)\\B_\\b",
+            "<i>$1</i>"
+    ) {
+        @Override
+        protected void validate(String input) {
+        }
+    };
 
     public ItalicTagMarkupReplacer() {
         super(
-                "(?<=^| )\\b_(.+)_\\b",
+                "\\b_\\B([^_><]+)\\B_\\b",
                 "<i>$1</i>"
         );
+    }
+
+    @Override
+    public String replace(String input) {
+        String result = super.replace(input);
+        return italicSnakeCaseMarkupReplacer.replace(result);
     }
 
     @Override

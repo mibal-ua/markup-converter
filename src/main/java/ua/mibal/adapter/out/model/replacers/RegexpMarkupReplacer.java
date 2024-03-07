@@ -18,7 +18,7 @@ public abstract class RegexpMarkupReplacer implements MarkupReplacer {
     }
 
     @Override
-    public final String replace(String input) {
+    public String replace(String input) {
         validate(input);
         return Pattern.compile(FIND_REGEXP, MULTILINE)
                 .matcher(input)
