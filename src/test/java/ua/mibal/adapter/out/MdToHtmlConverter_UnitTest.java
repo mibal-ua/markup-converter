@@ -2,7 +2,6 @@ package ua.mibal.adapter.out;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import ua.mibal.adapter.out.component.MarkupReplacerProvider;
 import ua.mibal.adapter.out.model.MarkupValidationException;
 import ua.mibal.test.annotation.UnitTest;
 
@@ -16,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @UnitTest
 class MdToHtmlConverter_UnitTest {
 
-    private MdToHtmlConverter converter = new MdToHtmlConverter(new MarkupReplacerProvider());
+    private final MdToHtmlConverter converter = new MdToHtmlConverter();
 
     @ParameterizedTest
     @CsvSource("""

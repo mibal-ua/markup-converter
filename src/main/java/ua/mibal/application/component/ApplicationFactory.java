@@ -2,9 +2,9 @@ package ua.mibal.application.component;
 
 import ua.mibal.adapter.out.FileInputProvider;
 import ua.mibal.adapter.out.FileWriterContentSender;
+import ua.mibal.adapter.out.MdToAsciiConverter;
 import ua.mibal.adapter.out.MdToHtmlConverter;
 import ua.mibal.adapter.out.component.ArgumentParser;
-import ua.mibal.adapter.out.component.MarkupReplacerProvider;
 import ua.mibal.adapter.out.model.Arguments;
 import ua.mibal.application.Application;
 import ua.mibal.application.port.ContentSender;
@@ -18,6 +18,7 @@ import ua.mibal.application.port.InputProvider;
 public class ApplicationFactory {
     private static final String OUTPUT_PATH_KEY = "out";
     private static final String INPUT_PATH_KEY = "in";
+    private static final String FORMAT_PATH_KEY = "format";
 
     private final Arguments arguments;
 
@@ -43,7 +44,16 @@ public class ApplicationFactory {
     }
 
     private Converter condfigureConverter() {
-        return new MdToHtmlConverter(new MarkupReplacerProvider());
+        if (arguments.containsKey(FORMAT_PATH_KEY)
+            && "ascii".equals(arguments.get(FORMAT_PATH_KEY))) {
+            return new MdToAsciiConverter();
+        } else if (!arguments.containsKey(FORMAT_PATH_KEY)
+                   || arguments.containsKey(FORMAT_PATH_KEY)
+                      && "html".equals(arguments.get(FORMAT_PATH_KEY))) {
+            return new MdToHtmlConverter();
+        } else {
+            throw new IllegalArgumentException("Unknown format");
+        }
     }
 
     private ContentSender configureContentSender() {

@@ -3,6 +3,8 @@ package ua.mibal.application.component;
 import org.junit.jupiter.api.Test;
 import ua.mibal.adapter.out.FileInputProvider;
 import ua.mibal.adapter.out.FileWriterContentSender;
+import ua.mibal.adapter.out.MdToAsciiConverter;
+import ua.mibal.adapter.out.MdToHtmlConverter;
 import ua.mibal.adapter.out.model.ArgumentRequiredException;
 import ua.mibal.application.Application;
 import ua.mibal.test.annotation.UnitTest;
@@ -33,8 +35,21 @@ class ApplicationFactory_UnitTest {
     void create_shouldCreateApplicationWithCorrectInputPath() {
         givenFactoryWithArgs("-in", "input.md");
 
-
         thenCreateShouldReturnApplication(FileInputProvider.class, "input.md");
+    }
+
+    @Test
+    void create_shouldCreateApplicationWithHtmlConverter() {
+        givenFactoryWithArgs("-in", "input.md", "-format", "html");
+
+        thenCreateShouldReturnApplication(MdToHtmlConverter.class);
+    }
+
+    @Test
+    void create_shouldCreateApplicationWithAsciiConverter() {
+        givenFactoryWithArgs("-in", "input.md", "-format", "ascii");
+
+        thenCreateShouldReturnApplication(MdToAsciiConverter.class);
     }
 
     @Test
@@ -71,7 +86,9 @@ class ApplicationFactory_UnitTest {
             Application application = factory.create();
 
             assertNotNull(application);
-            assertFalse(mockConstructor.constructed().isEmpty());
+            assertFalse(
+                    mockConstructor.constructed().isEmpty(),
+                    "Constructor for " + componentObject + " was not called");
         }
     }
 }

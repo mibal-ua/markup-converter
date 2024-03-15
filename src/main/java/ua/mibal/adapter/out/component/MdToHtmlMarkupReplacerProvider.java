@@ -13,9 +13,9 @@ import ua.mibal.adapter.out.model.replacers.encoding.PreformattedInnerTagsEncode
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-public class MarkupReplacerProvider {
+public class MdToHtmlMarkupReplacerProvider {
 
-    public MarkupReplacer[] provide() {
+    public static MarkupReplacer[] provide() {
         return new MarkupReplacer[]{
                 new PreformattedInnerTagsEncoderMarkupReplacer(),
 
