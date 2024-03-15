@@ -4,7 +4,9 @@ import ua.mibal.adapter.out.model.MarkupReplacer;
 import ua.mibal.adapter.out.model.ascii.BoldAsciiMarkupReplacer;
 import ua.mibal.adapter.out.model.ascii.ItalicAsciiMarkupReplacer;
 import ua.mibal.adapter.out.model.ascii.MonospacedAsciiMarkupReplacer;
-import ua.mibal.adapter.out.model.ascii.PreformattedTagMarkupReplacer;
+import ua.mibal.adapter.out.model.ascii.PreformattedAsciiMarkupReplacer;
+import ua.mibal.adapter.out.model.coding.decoding.PreformattedInnerTagsDecoderMarkupReplacer;
+import ua.mibal.adapter.out.model.coding.encoding.PreformattedInnerTagsEncoderMarkupReplacer;
 
 /**
  * @author Mykhailo Balakhon
@@ -14,11 +16,14 @@ public class MdToAsciiMarkupReplacerProvider {
 
     public static MarkupReplacer[] provide() {
         return new MarkupReplacer[]{
-                new PreformattedTagMarkupReplacer(),
+                new PreformattedInnerTagsEncoderMarkupReplacer(),
 
                 new BoldAsciiMarkupReplacer(),
-                new MonospacedAsciiMarkupReplacer(),
                 new ItalicAsciiMarkupReplacer(),
+                new MonospacedAsciiMarkupReplacer(),
+
+                new PreformattedInnerTagsDecoderMarkupReplacer(),
+                new PreformattedAsciiMarkupReplacer(),
         };
     }
 }
