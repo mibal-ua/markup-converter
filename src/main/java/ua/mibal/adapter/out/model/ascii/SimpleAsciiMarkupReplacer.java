@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out.model.html;
+package ua.mibal.adapter.out.model.ascii;
 
 import ua.mibal.adapter.out.model.MarkupValidationException;
 import ua.mibal.adapter.out.model.RegexpMarkupReplacer;
@@ -14,20 +14,20 @@ import static java.util.regex.Pattern.MULTILINE;
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-public abstract class SimpleTagMarkupReplacer extends RegexpMarkupReplacer {
+public abstract class SimpleAsciiMarkupReplacer extends RegexpMarkupReplacer {
     private final String mdTag;
 
-    public SimpleTagMarkupReplacer(String mdTag, String htmlTag) {
+    public SimpleAsciiMarkupReplacer(String mdTag, int asciiCode) {
         super(
                 format("{0}\\b([^{0}]+)\\b{0}", mdTag),
-                format("<{0}>$1</{0}>", htmlTag)
+                format("ESC[{0}m$1ESC[{1}m", asciiCode, asciiCode + 20)
         );
         this.mdTag = mdTag;
     }
 
     @Override
     protected void validate(String input) {
-        Pattern nestedTagsPattern = Pattern.compile(format("{0}((\\b_|<i>\\b)|((((\\*\\*)|<b>)|(`|<tt>))\\b))([^{0}]+)(((_\\b|\\b<\\/i>))|(\\b((\\*\\*)|<\\/b>)|`|<\\/tt>)){0}", mdTag), MULTILINE);
+        Pattern nestedTagsPattern = Pattern.compile(format("{0}((\\b_|ESC\\[3m\\b)|((((\\*\\*)|ESC\\[1m)|(`|ESC\\[7m))\\b))([^{0}]+)(((_\\b|\\bESC\\[23m))|(\\b((\\*\\*)|ESC\\[21m)|`|ESC\\[27m)){0}", mdTag), MULTILINE);
         Pattern notClosedPattern = Pattern.compile(format("{0}\\b([^{0}])*$", mdTag), MULTILINE);
 
         checkForViolation(input, Map.of(

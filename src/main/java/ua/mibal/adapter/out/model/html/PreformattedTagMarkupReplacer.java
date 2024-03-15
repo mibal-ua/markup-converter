@@ -1,6 +1,7 @@
 package ua.mibal.adapter.out.model.html;
 
 import ua.mibal.adapter.out.model.MarkupValidationException;
+import ua.mibal.adapter.out.model.RegexpMarkupReplacer;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
