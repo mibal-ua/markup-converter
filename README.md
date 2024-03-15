@@ -46,7 +46,7 @@ Here's a general guide to help you get started:
    ```
 
 3. **Build the Project (if needed):**
-   You need maven build tool to build the project using:
+   You need maven build tool to build the project and run tests using:
    ```bash
    mvn clean package
    ```
