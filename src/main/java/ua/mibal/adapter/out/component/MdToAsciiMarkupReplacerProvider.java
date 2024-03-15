@@ -18,9 +18,9 @@ public class MdToAsciiMarkupReplacerProvider {
         return new MarkupReplacer[]{
                 new PreformattedInnerTagsEncoderMarkupReplacer(),
 
+                new MonospacedAsciiMarkupReplacer(),
                 new BoldAsciiMarkupReplacer(),
                 new ItalicAsciiMarkupReplacer(),
-                new MonospacedAsciiMarkupReplacer(),
 
                 new PreformattedInnerTagsDecoderMarkupReplacer(),
                 new PreformattedAsciiMarkupReplacer(),

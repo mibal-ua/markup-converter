@@ -31,7 +31,7 @@ public abstract class SimpleAsciiMarkupReplacer extends RegexpMarkupReplacer {
 
     @Override
     protected void validate(String input) {
-        Pattern nestedTagsPattern = Pattern.compile(format("{0}((\\b_)|(((\\*\\*)|`)\\b))([^{0}]+)((_\\b)|(\\b(\\*\\*)|`)){0}", mdTag), MULTILINE);
+        Pattern nestedTagsPattern = Pattern.compile(format("{0}((\\b_|(\\u001B\\[3m)\\b)|((((\\*\\*)|(\\u001B\\[1m))|(`|(\\u001B\\[7m)))\\b))([^{0}]+)(((_\\b|\\b(\\u001B\\[23m)))|(\\b((\\*\\*)|(\\u001B\\[22m))|`|(\\u001B\\[27m))){0}", mdTag), MULTILINE);
         Pattern notClosedPattern = Pattern.compile(format("{0}\\b([^{0}])*$", mdTag), MULTILINE);
 
         checkForViolation(input, Map.of(

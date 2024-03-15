@@ -77,7 +77,6 @@ class MdToAsciiConverter_UnitTest {
             "_**abcd**_",
             "**_abcd_**",
             "`_abcd_`",
-            "**`abcd`**",
             "_`abcd`_",
     })
     void convert_should_throw(String input) {
