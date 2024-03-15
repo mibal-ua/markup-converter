@@ -53,7 +53,7 @@ class MdToAsciiConverter_UnitTest {
                 \u001B[7m_\u001B[27m - теж ок
                 snake_case
                 \u001B[3mitalic case\u001B[23m
-                \u001B[3mкінця-краю немає\u001B[2m
+                \u001B[3mкінця-краю немає\u001B[23m
                             
                             
                 параграф3
