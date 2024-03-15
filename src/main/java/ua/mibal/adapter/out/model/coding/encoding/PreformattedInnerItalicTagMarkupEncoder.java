@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out.model.encoding;
+package ua.mibal.adapter.out.model.coding.encoding;
 
 import ua.mibal.adapter.out.model.MarkupEncoder;
 

@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out.model.html.decoding;
+package ua.mibal.adapter.out.model.coding.decoding;
 
 import java.text.MessageFormat;
 

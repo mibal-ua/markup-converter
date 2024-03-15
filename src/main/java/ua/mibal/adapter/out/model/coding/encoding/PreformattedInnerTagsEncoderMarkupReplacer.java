@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out.model.encoding;
+package ua.mibal.adapter.out.model.coding.encoding;
 
 import ua.mibal.adapter.out.model.MarkupEncoder;
 import ua.mibal.adapter.out.model.MarkupReplacer;
@@ -37,7 +37,7 @@ public class PreformattedInnerTagsEncoderMarkupReplacer implements MarkupReplace
 
     private String replaceOccurrence(MatchResult match, String input) {
         String before = input.substring(0, match.start());
-        String after = input.substring(match.end(), input.length());
+        String after = input.substring(match.end());
 
         String protectedContent = protect(match.group());
         return before + protectedContent + after;

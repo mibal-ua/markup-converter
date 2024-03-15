@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out.model.encoding;
+package ua.mibal.adapter.out.model.coding.encoding;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
