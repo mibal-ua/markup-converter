@@ -17,10 +17,14 @@ import static java.util.regex.Pattern.MULTILINE;
 public abstract class SimpleAsciiMarkupReplacer extends RegexpMarkupReplacer {
     private final String mdTag;
 
-    public SimpleAsciiMarkupReplacer(String mdTag, int asciiCode) {
+    public SimpleAsciiMarkupReplacer(String mdTag, int asciiOpen) {
+        this(mdTag, asciiOpen, asciiOpen + 20);
+    }
+
+    public SimpleAsciiMarkupReplacer(String mdTag, int asciiOpen, int asciiClose) {
         super(
                 format("{0}\\b([^{0}]+)\\b{0}", mdTag),
-                format("\u001B[{0}m$1\u001B[{1}m", asciiCode, asciiCode + 20)
+                format("\u001B[{0}m$1\u001B[{1}m", asciiOpen, asciiClose)
         );
         this.mdTag = mdTag;
     }

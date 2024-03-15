@@ -8,6 +8,6 @@ package ua.mibal.adapter.out.model.ascii;
 public class BoldAsciiMarkupReplacer extends SimpleAsciiMarkupReplacer {
 
     public BoldAsciiMarkupReplacer() {
-        super("\\*\\*", 1);
+        super("\\*\\*", 1, 22);
     }
 }
