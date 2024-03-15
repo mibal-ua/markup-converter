@@ -20,14 +20,14 @@ public abstract class SimpleAsciiMarkupReplacer extends RegexpMarkupReplacer {
     public SimpleAsciiMarkupReplacer(String mdTag, int asciiCode) {
         super(
                 format("{0}\\b([^{0}]+)\\b{0}", mdTag),
-                format("ESC[{0}m$1ESC[{1}m", asciiCode, asciiCode + 20)
+                format("\u001B[{0}m$1\u001B[{1}m", asciiCode, asciiCode + 20)
         );
         this.mdTag = mdTag;
     }
 
     @Override
     protected void validate(String input) {
-        Pattern nestedTagsPattern = Pattern.compile(format("{0}((\\b_|ESC\\[3m\\b)|((((\\*\\*)|ESC\\[1m)|(`|ESC\\[7m))\\b))([^{0}]+)(((_\\b|\\bESC\\[23m))|(\\b((\\*\\*)|ESC\\[21m)|`|ESC\\[27m)){0}", mdTag), MULTILINE);
+        Pattern nestedTagsPattern = Pattern.compile(format("{0}((\\b_)|(((\\*\\*)|`)\\b))([^{0}]+)((_\\b)|(\\b(\\*\\*)|`)){0}", mdTag), MULTILINE);
         Pattern notClosedPattern = Pattern.compile(format("{0}\\b([^{0}])*$", mdTag), MULTILINE);
 
         checkForViolation(input, Map.of(
