@@ -4,7 +4,6 @@ import ua.mibal.adapter.out.FileInputProvider;
 import ua.mibal.adapter.out.FileWriterContentSender;
 import ua.mibal.adapter.out.MdToHtmlConverter;
 import ua.mibal.adapter.out.component.ArgumentParser;
-import ua.mibal.adapter.out.component.FileWriterFactory;
 import ua.mibal.adapter.out.component.MarkupReplacerProvider;
 import ua.mibal.adapter.out.model.Arguments;
 import ua.mibal.application.Application;
@@ -50,7 +49,7 @@ public class ApplicationFactory {
     private ContentSender configureContentSender() {
         if (arguments.containsKey(OUTPUT_PATH_KEY)) {
             String outputPath = arguments.get(OUTPUT_PATH_KEY);
-            return new FileWriterContentSender(new FileWriterFactory(), outputPath);
+            return new FileWriterContentSender(outputPath);
         }
         return new ConsoleContentSender();
     }

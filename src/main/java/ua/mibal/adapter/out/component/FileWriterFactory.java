@@ -26,7 +26,7 @@ import java.io.IOException;
  */
 public class FileWriterFactory {
 
-    public FileWriter getFor(String filePath) throws IOException {
+    public static FileWriter getFor(String filePath) throws IOException {
         return new FileWriter(filePath);
     }
 }

@@ -16,9 +16,11 @@
 
 package ua.mibal.adapter.out;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import ua.mibal.adapter.out.component.FileWriterFactory;
 import ua.mibal.test.annotation.UnitTest;
 
@@ -26,8 +28,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  * @author Mykhailo Balakhon
@@ -35,22 +37,27 @@ import static org.mockito.Mockito.when;
  */
 @UnitTest
 class FileWriterContentSender_UnitTest {
+
     private FileWriterContentSender sender;
 
     @Mock
-    private FileWriterFactory fileWriterFactory;
-
-    @Mock
     private FileWriter fileWriter;
+    private MockedStatic<FileWriterFactory> fileWriterFactory;
 
     @BeforeEach
     void setUp() {
-        sender = new FileWriterContentSender(fileWriterFactory, "path/to/out/file");
+        fileWriterFactory = mockStatic(FileWriterFactory.class);
+        sender = new FileWriterContentSender("path/to/out/file");
+    }
+
+    @AfterEach
+    void close() {
+        fileWriterFactory.close();
     }
 
     @Test
     void send() throws IOException {
-        when(fileWriterFactory.getFor("path/to/out/file"))
+        fileWriterFactory.when(() -> FileWriterFactory.getFor("path/to/out/file"))
                 .thenReturn(fileWriter);
 
         sender.send("CONTENT TO WRITE");
@@ -59,8 +66,8 @@ class FileWriterContentSender_UnitTest {
     }
 
     @Test
-    void send_should_throw_FileWriterContentSenderException() throws IOException {
-        when(fileWriterFactory.getFor("path/to/out/file"))
+    void send_should_throw_FileWriterContentSenderException() {
+        fileWriterFactory.when(() -> FileWriterFactory.getFor("path/to/out/file"))
                 .thenThrow(IOException.class);
 
         assertThrows(FileWriterContentSenderException.class,

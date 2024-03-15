@@ -27,18 +27,15 @@ import java.io.Writer;
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
 public class FileWriterContentSender implements ContentSender {
-    private final FileWriterFactory fileWriterFactory;
     private final String filePath;
 
-    public FileWriterContentSender(FileWriterFactory fileWriterFactory,
-                                   String filePath) {
-        this.fileWriterFactory = fileWriterFactory;
+    public FileWriterContentSender(String filePath) {
         this.filePath = filePath;
     }
 
     @Override
     public void send(String content) {
-        try (Writer writer = fileWriterFactory.getFor(filePath)) {
+        try (Writer writer = FileWriterFactory.getFor(filePath)) {
             writer.write(content);
         } catch (IOException e) {
             throw new FileWriterContentSenderException(String.format(
