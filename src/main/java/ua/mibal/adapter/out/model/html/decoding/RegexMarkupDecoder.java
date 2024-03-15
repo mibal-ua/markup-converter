@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out.model.html.encoding;
+package ua.mibal.adapter.out.model.html.decoding;
 
 import ua.mibal.adapter.out.model.MarkupDecoder;
 
