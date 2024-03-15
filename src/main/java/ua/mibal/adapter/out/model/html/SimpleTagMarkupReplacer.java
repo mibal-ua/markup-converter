@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out.model.replacers;
+package ua.mibal.adapter.out.model.html;
 
 import ua.mibal.adapter.out.model.MarkupValidationException;
 
@@ -6,43 +6,32 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.text.MessageFormat.format;
 import static java.util.regex.Pattern.MULTILINE;
 
 /**
  * @author Mykhailo Balakhon
  * @link <a href="mailto:9mohapx9@gmail.com">9mohapx9@gmail.com</a>
  */
-public class ItalicTagMarkupReplacer extends RegexpMarkupReplacer {
-    private final MarkupReplacer italicSnakeCaseMarkupReplacer = new RegexpMarkupReplacer(
-            "\\b_\\B([^ ><]+)\\B_\\b",
-            "<i>$1</i>"
-    ) {
-        @Override
-        protected void validate(String input) {
-        }
-    };
+public abstract class SimpleTagMarkupReplacer extends RegexpMarkupReplacer {
+    private final String mdTag;
 
-    public ItalicTagMarkupReplacer() {
+    public SimpleTagMarkupReplacer(String mdTag, String htmlTag) {
         super(
-                "\\b_\\B([^_><]+)\\B_\\b",
-                "<i>$1</i>"
+                format("{0}\\b([^{0}]+)\\b{0}", mdTag),
+                format("<{0}>$1</{0}>", htmlTag)
         );
-    }
-
-    @Override
-    public String replace(String input) {
-        String result = super.replace(input);
-        return italicSnakeCaseMarkupReplacer.replace(result);
+        this.mdTag = mdTag;
     }
 
     @Override
     protected void validate(String input) {
-        Pattern notClosedAtTheEndPattern = Pattern.compile("\\b_\\B[^_]+\\b(?!.*\\B_\\b)", MULTILINE);
-        Pattern notClosedAtTheMiddlePattern = Pattern.compile("\\b_\\B[^_]+\\b(?=\\b_\\B[^_><]+\\B_\\b)", MULTILINE);
+        Pattern nestedTagsPattern = Pattern.compile(format("{0}((\\b_|<i>\\b)|((((\\*\\*)|<b>)|(`|<tt>))\\b))([^{0}]+)(((_\\b|\\b<\\/i>))|(\\b((\\*\\*)|<\\/b>)|`|<\\/tt>)){0}", mdTag), MULTILINE);
+        Pattern notClosedPattern = Pattern.compile(format("{0}\\b([^{0}])*$", mdTag), MULTILINE);
 
         checkForViolation(input, Map.of(
-                notClosedAtTheEndPattern, "Markdown tag is not closed",
-                notClosedAtTheMiddlePattern, "Markdown tag is not closed"
+                nestedTagsPattern, "Tags are nested",
+                notClosedPattern, "Markdown tag is not closed"
         ));
     }
 
@@ -55,7 +44,7 @@ public class ItalicTagMarkupReplacer extends RegexpMarkupReplacer {
 
             if (matcher.find()) {
                 MarkupValidationException parentException = new MarkupValidationException(
-                        "Exception for markdown '_' tag"
+                        "Exception for markdown '%s' tag".formatted(mdTag)
                 );
                 do {
                     String quote = matcher.group();

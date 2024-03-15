@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out.model.replacers;
+package ua.mibal.adapter.out.model.html;
 
 
 /**

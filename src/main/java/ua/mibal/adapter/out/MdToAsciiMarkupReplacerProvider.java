@@ -1,6 +1,6 @@
 package ua.mibal.adapter.out;
 
-import ua.mibal.adapter.out.model.replacers.MarkupReplacer;
+import ua.mibal.adapter.out.model.MarkupReplacer;
 
 /**
  * @author Mykhailo Balakhon

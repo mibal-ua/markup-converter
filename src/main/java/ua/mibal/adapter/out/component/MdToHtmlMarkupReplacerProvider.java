@@ -1,13 +1,13 @@
 package ua.mibal.adapter.out.component;
 
-import ua.mibal.adapter.out.model.replacers.BoldTagMarkupReplacer;
-import ua.mibal.adapter.out.model.replacers.ItalicTagMarkupReplacer;
-import ua.mibal.adapter.out.model.replacers.MarkupReplacer;
-import ua.mibal.adapter.out.model.replacers.MonospacedTagMarkupReplacer;
-import ua.mibal.adapter.out.model.replacers.ParagraphMarkupReplacer;
-import ua.mibal.adapter.out.model.replacers.PreformattedTagMarkupReplacer;
-import ua.mibal.adapter.out.model.replacers.encoding.PreformattedInnerTagsDecoderMarkupReplacer;
-import ua.mibal.adapter.out.model.replacers.encoding.PreformattedInnerTagsEncoderMarkupReplacer;
+import ua.mibal.adapter.out.model.html.BoldTagMarkupReplacer;
+import ua.mibal.adapter.out.model.html.ItalicTagMarkupReplacer;
+import ua.mibal.adapter.out.model.MarkupReplacer;
+import ua.mibal.adapter.out.model.html.MonospacedTagMarkupReplacer;
+import ua.mibal.adapter.out.model.html.ParagraphMarkupReplacer;
+import ua.mibal.adapter.out.model.html.PreformattedTagMarkupReplacer;
+import ua.mibal.adapter.out.model.html.encoding.PreformattedInnerTagsDecoderMarkupReplacer;
+import ua.mibal.adapter.out.model.html.encoding.PreformattedInnerTagsEncoderMarkupReplacer;
 
 /**
  * @author Mykhailo Balakhon

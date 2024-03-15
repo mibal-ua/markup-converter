@@ -1,6 +1,7 @@
-package ua.mibal.adapter.out.model.replacers.encoding;
+package ua.mibal.adapter.out.model.html.encoding;
 
-import ua.mibal.adapter.out.model.replacers.MarkupReplacer;
+import ua.mibal.adapter.out.model.MarkupDecoder;
+import ua.mibal.adapter.out.model.MarkupReplacer;
 
 import java.util.List;
 

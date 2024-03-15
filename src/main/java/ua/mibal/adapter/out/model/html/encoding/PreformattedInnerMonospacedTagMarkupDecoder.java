@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out.model.replacers.encoding;
+package ua.mibal.adapter.out.model.html.encoding;
 
 /**
  * @author Mykhailo Balakhon

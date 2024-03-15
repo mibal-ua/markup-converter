@@ -1,6 +1,6 @@
 package ua.mibal.adapter.out;
 
-import ua.mibal.adapter.out.model.replacers.MarkupReplacer;
+import ua.mibal.adapter.out.model.MarkupReplacer;
 import ua.mibal.application.port.Converter;
 
 /**
@@ -12,7 +12,10 @@ public class MdToAsciiConverter implements Converter {
 
     @Override
     public String convert(String input) {
-        // TODO
-        return null;
+        String result = input;
+        for (MarkupReplacer replacer : markupReplacers) {
+            result = replacer.replace(result);
+        }
+        return result;
     }
 }
