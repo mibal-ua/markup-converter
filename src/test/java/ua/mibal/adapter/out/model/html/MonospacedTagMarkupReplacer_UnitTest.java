@@ -1,10 +1,9 @@
-package ua.mibal.adapter.out.model.replacers;
+package ua.mibal.adapter.out.model.html;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ua.mibal.adapter.out.model.MarkupValidationException;
-import ua.mibal.adapter.out.model.html.MonospacedTagMarkupReplacer;
 import ua.mibal.test.annotation.UnitTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
