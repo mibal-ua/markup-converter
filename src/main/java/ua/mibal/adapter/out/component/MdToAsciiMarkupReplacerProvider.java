@@ -1,4 +1,4 @@
-package ua.mibal.adapter.out;
+package ua.mibal.adapter.out.component;
 
 import ua.mibal.adapter.out.model.MarkupReplacer;
 import ua.mibal.adapter.out.model.ascii.BoldAsciiMarkupReplacer;
