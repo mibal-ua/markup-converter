@@ -2,6 +2,7 @@ package ua.mibal.adapter.out;
 
 import ua.mibal.adapter.out.model.MarkupReplacer;
 import ua.mibal.adapter.out.model.ascii.BoldAsciiMarkupReplacer;
+import ua.mibal.adapter.out.model.ascii.ItalicAsciiMarkupReplacer;
 import ua.mibal.adapter.out.model.ascii.MonospacedAsciiMarkupReplacer;
 
 /**
@@ -14,6 +15,7 @@ public class MdToAsciiMarkupReplacerProvider {
         return new MarkupReplacer[]{
                 new BoldAsciiMarkupReplacer(),
                 new MonospacedAsciiMarkupReplacer(),
+                new ItalicAsciiMarkupReplacer(),
         };
     }
 }
