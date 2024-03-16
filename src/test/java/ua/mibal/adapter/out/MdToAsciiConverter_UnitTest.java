@@ -30,7 +30,7 @@ class MdToAsciiConverter_UnitTest {
                 `_` - теж ок
                 snake_case
                 _italic case_
-                _кінця-краю немає
+                _кінця-краю немає_
                             
                             
                 параграф3
